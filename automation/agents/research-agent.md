@@ -5,7 +5,7 @@ sub-niche, with enough real signal to write an honest comparison.
 
 ## What this agent must NOT do
 
-- Must not scrape amazon.com programmatically (product pages, prices, images) — that's a
+- Must not scrape amazon.ca programmatically (product pages, prices, images) — that's a
   material breach of the Associates Operating Agreement, full stop.
 - Must not invent pros/cons, ratings, or specs it can't source. If it can't find real
   information on a product, it drops that product from the shortlist rather than padding it.
@@ -27,8 +27,10 @@ sub-niche, with enough real signal to write an honest comparison.
    at least two independent sources per product before including it.
 2. Note recurring, specific praise/complaints (not generic marketing copy) — these become the
    pros/cons the Writer agent uses.
-3. Visit each candidate's actual Amazon listing (normal browsing) to confirm it's still sold,
-   note the ASIN from the URL (`amazon.com/dp/<ASIN>`), and sanity-check it isn't discontinued.
+3. Visit each candidate's actual listing on **amazon.ca specifically** (normal browsing) to
+   confirm it's sold in Canada, note the ASIN from the URL (`amazon.ca/dp/<ASIN>`), and
+   sanity-check it isn't discontinued. Don't assume a product's US ASIN carries over — always
+   verify directly on amazon.ca, since ASINs and availability can differ by marketplace.
 4. Rank the shortlist by: genuine differentiation (don't recommend 4 nearly-identical items),
    review volume/rating as a quality floor (not a marketing hook), price spread (cover
    budget/mid/premium so the roundup serves different readers).

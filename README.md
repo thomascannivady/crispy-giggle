@@ -1,17 +1,28 @@
-# Home Cook House — Amazon Associates affiliate site
+# Home Cook House — Amazon.ca Associates affiliate site
 
-A content site + agent pipeline for Amazon Associates affiliate marketing, niche: **Home & Kitchen**.
-Domain: **homecookhouse.com** (live on Cloudflare Pages). Associates tag: **homecookhouse-20**.
+A content site + agent pipeline for Amazon Associates affiliate marketing, niche: **Home & Kitchen**,
+targeting the **Canadian marketplace (amazon.ca)**. Domain: **homecookhouse.com** (live on
+Cloudflare Pages).
 
 Read this whole file before publishing anything with real affiliate links — the Associates
 Operating Agreement treats most violations as instant, warning-free account termination.
+
+## Why amazon.ca, not amazon.com
+
+Originally set up against the US program (amazon.com), tag `homecookhouse-20` — that account
+still exists and is untouched, just unused. Pivoted to amazon.ca because Amazon's US direct
+deposit doesn't support Canadian-domiciled bank accounts (confirmed directly in the Associates
+Central payment form — Canada isn't in the supported country list at all), and the Payoneer
+workaround adds ongoing fees and complexity. Amazon.ca pays in CAD to a normal Canadian bank
+account, no workaround needed. Trade-off: the Canadian e-commerce market is roughly **28x smaller**
+than the US one — fewer buyers, but a payout that actually works cleanly.
 
 ## Reality check
 
 - **24-hour cookie window.** Content has to target real buying intent (comparisons, "best X
   for Y," reviews) — general traffic won't convert in time.
-- **Commissions are thin.** Home & Kitchen is ~4.5%. This needs real traffic volume over time,
-  not a one-time setup.
+- **Commissions are thin.** Home & Kitchen is ~4.5% on the US rate card; Amazon.ca's card may
+  differ slightly — check it once approved.
 - **Zero-tolerance enforcement.** Missing disclosure, cloaked links, incentivized clicks, or
   scraping Amazon's own pages for content/prices/images can all trigger immediate closure.
 - **Agents can do the labor, not the accountability.** The account, the domain, and final
@@ -19,11 +30,11 @@ Operating Agreement treats most violations as instant, warning-free account term
 
 ## What only you can do
 
-1. ~~Create the Amazon Associates account~~ — applied, tracking tag **homecookhouse-20** issued
-   and wired into every affiliate link. Account is in the unpaid trial period until 3 qualifying
-   sales land within 180 days — see the Reality Check above.
+1. **Apply for Amazon.ca Associates** at associates.amazon.ca — separate program from the US
+   one, needs its own signup and its own tracking tag.
 2. ~~Buy a domain~~ — done: **homecookhouse.com**, live on Cloudflare Pages with HTTPS.
-3. ~~Get your Associates tracking tag~~ — done: `homecookhouse-20`.
+3. **Get your Amazon.ca tracking tag** and replace every `YOURCATAG-20` placeholder in
+   `site/src/content/reviews/*.mdx` with your real one.
 4. **Get real product images**, once approved: either the SiteStripe browser toolbar (built
    into Associates Central once you're approved) or the Product Advertising API (requires 3
    qualifying sales in the trailing 180 days first — a genuine chicken-and-egg problem early
@@ -68,17 +79,17 @@ you've read the post and are comfortable with it going out under your Associates
 
 ## Roadmap
 
-**Phase 0 — done**
-~~Amazon Associates signup~~ → ~~domain purchase~~ → ~~host + deploy~~ → ~~tracking tag~~.
-Account is in the unpaid trial period now — needs 3 qualifying sales within 180 days to stay
-active, so driving real traffic to what's published matters more than adding more posts blind.
+**Phase 0 — in progress**
+~~Domain purchase~~ → ~~host + deploy~~ → ~~US Associates signup~~ (abandoned, payment method
+didn't support Canada) → **Amazon.ca Associates signup** (pending) → Amazon.ca tracking tag.
 
-**Phase 1 — first real content — done**
+**Phase 1 — first real content — pending re-verification**
 Research agent found real, sourced candidates for a gooseneck-kettle roundup → Writer agent
-(with human editing) turned it into a post → reviewed and approved → published live at
-[homecookhouse.com/reviews/best-electric-kettles-2026](https://homecookhouse.com/reviews/best-electric-kettles-2026/).
-This was done manually end-to-end once so the pipeline's output quality is known before
-automating the cadence.
+(with human editing) turned it into a post → reviewed and approved → published, then pulled
+back to `draft: true` when the amazon.com → amazon.ca pivot happened. All 3 ASINs were
+re-verified live on amazon.ca (same ASINs, confirmed via direct product-page checks, not
+assumed), links updated to amazon.ca with a placeholder tag. Once the real Amazon.ca tag is in,
+swap `YOURCATAG-20`, re-review, and flip `draft: false` again.
 
 **Phase 2 — establish cadence**
 Once you trust the pipeline, schedule the Research → Writer loop weekly (see the `schedule`
