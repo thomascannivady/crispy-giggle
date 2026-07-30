@@ -22,9 +22,8 @@ always as a draft.
   will reject the build otherwise.
 - ASIN must be the real 10-character code from the Research agent's output — regex-validated
   by the schema (`^[A-Z0-9]{10}$`).
-- `affiliateUrl` format: `https://www.amazon.com/dp/<ASIN>?tag=<your-associates-tag>` — the
-  tag comes from the site owner's approved Associates account (placeholder `YOURTAG-20` until
-  they provide the real one; never invent a tag).
+- `affiliateUrl` format: `https://www.amazon.com/dp/<ASIN>?tag=homecookhouse-20` — this is the
+  site's real, approved Associates tag. Never use a different tag or invent one.
 
 ## Process
 

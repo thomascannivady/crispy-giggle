@@ -1,7 +1,7 @@
 # Home Cook House — Amazon Associates affiliate site
 
 A content site + agent pipeline for Amazon Associates affiliate marketing, niche: **Home & Kitchen**.
-Domain: **homecookhouse.com** (owned, not yet deployed).
+Domain: **homecookhouse.com** (live on Cloudflare Pages). Associates tag: **homecookhouse-20**.
 
 Read this whole file before publishing anything with real affiliate links — the Associates
 Operating Agreement treats most violations as instant, warning-free account termination.
@@ -19,13 +19,11 @@ Operating Agreement treats most violations as instant, warning-free account term
 
 ## What only you can do
 
-1. **Create the Amazon Associates account** (associates.amazon.com) — identity verification,
-   tax interview, bank details. Nothing here can or should do this for you.
-2. ~~Buy a domain~~ — done: **homecookhouse.com**, already wired into `site/astro.config.mjs`.
-   Still need **hosting** (Netlify, Vercel, or Cloudflare Pages all have free tiers that suit
-   this Astro site) and to point the domain's DNS at whichever you pick.
-3. **Get your Associates tracking tag** and replace every `YOURTAG-20` placeholder in
-   `site/src/content/reviews/*.mdx` with your real one.
+1. ~~Create the Amazon Associates account~~ — applied, tracking tag **homecookhouse-20** issued
+   and wired into every affiliate link. Account is in the unpaid trial period until 3 qualifying
+   sales land within 180 days — see the Reality Check above.
+2. ~~Buy a domain~~ — done: **homecookhouse.com**, live on Cloudflare Pages with HTTPS.
+3. ~~Get your Associates tracking tag~~ — done: `homecookhouse-20`.
 4. **Get real product images**, once approved: either the SiteStripe browser toolbar (built
    into Associates Central once you're approved) or the Product Advertising API (requires 3
    qualifying sales in the trailing 180 days first — a genuine chicken-and-egg problem early
@@ -70,15 +68,17 @@ you've read the post and are comfortable with it going out under your Associates
 
 ## Roadmap
 
-**Phase 0 — you, this week**
-Amazon Associates signup → ~~domain purchase~~ (done: homecookhouse.com) → pick a host and
-deploy → get your tracking tag.
+**Phase 0 — done**
+~~Amazon Associates signup~~ → ~~domain purchase~~ → ~~host + deploy~~ → ~~tracking tag~~.
+Account is in the unpaid trial period now — needs 3 qualifying sales within 180 days to stay
+active, so driving real traffic to what's published matters more than adding more posts blind.
 
-**Phase 1 — first real content (agents + you)**
-Run the Research agent for a specific Home & Kitchen sub-niche → Writer agent drafts the MDX →
-you review and edit → flip `draft: false` → Publisher agent verifies the build → you deploy.
-Do this manually end-to-end once before automating the cadence, so you know what "good" looks
-like.
+**Phase 1 — first real content — done**
+Research agent found real, sourced candidates for a gooseneck-kettle roundup → Writer agent
+(with human editing) turned it into a post → reviewed and approved → published live at
+[homecookhouse.com/reviews/best-electric-kettles-2026](https://homecookhouse.com/reviews/best-electric-kettles-2026/).
+This was done manually end-to-end once so the pipeline's output quality is known before
+automating the cadence.
 
 **Phase 2 — establish cadence**
 Once you trust the pipeline, schedule the Research → Writer loop weekly (see the `schedule`
