@@ -2,7 +2,7 @@
 
 A content site + agent pipeline for Amazon Associates affiliate marketing, niche: **Home & Kitchen**,
 targeting the **Canadian marketplace (amazon.ca)**. Domain: **homecookhouse.com** (live on
-Cloudflare Pages).
+Cloudflare Pages). Associates tag: **homecookhou03-20**.
 
 Read this whole file before publishing anything with real affiliate links — the Associates
 Operating Agreement treats most violations as instant, warning-free account termination.
@@ -14,7 +14,8 @@ still exists and is untouched, just unused. Pivoted to amazon.ca because Amazon'
 deposit doesn't support Canadian-domiciled bank accounts (confirmed directly in the Associates
 Central payment form — Canada isn't in the supported country list at all), and the Payoneer
 workaround adds ongoing fees and complexity. Amazon.ca pays in CAD to a normal Canadian bank
-account, no workaround needed. Trade-off: the Canadian e-commerce market is roughly **28x smaller**
+account, no workaround needed — confirmed: the Canadian bank account was accepted cleanly on the
+Amazon.ca payment form. Trade-off: the Canadian e-commerce market is roughly **28x smaller**
 than the US one — fewer buyers, but a payout that actually works cleanly.
 
 ## Reality check
@@ -30,11 +31,11 @@ than the US one — fewer buyers, but a payout that actually works cleanly.
 
 ## What only you can do
 
-1. **Apply for Amazon.ca Associates** at associates.amazon.ca — separate program from the US
-   one, needs its own signup and its own tracking tag.
+1. ~~Apply for Amazon.ca Associates~~ — done, tracking tag **homecookhou03-20** issued, payment
+   method (Canadian bank account) confirmed accepted.
 2. ~~Buy a domain~~ — done: **homecookhouse.com**, live on Cloudflare Pages with HTTPS.
-3. **Get your Amazon.ca tracking tag** and replace every `YOURCATAG-20` placeholder in
-   `site/src/content/reviews/*.mdx` with your real one.
+3. ~~Get your Amazon.ca tracking tag~~ — done: `homecookhou03-20`, wired into every affiliate
+   link.
 4. **Get real product images**, once approved: either the SiteStripe browser toolbar (built
    into Associates Central once you're approved) or the Product Advertising API (requires 3
    qualifying sales in the trailing 180 days first — a genuine chicken-and-egg problem early
@@ -79,17 +80,17 @@ you've read the post and are comfortable with it going out under your Associates
 
 ## Roadmap
 
-**Phase 0 — in progress**
+**Phase 0 — done**
 ~~Domain purchase~~ → ~~host + deploy~~ → ~~US Associates signup~~ (abandoned, payment method
-didn't support Canada) → **Amazon.ca Associates signup** (pending) → Amazon.ca tracking tag.
+didn't support Canada) → ~~Amazon.ca Associates signup~~ → ~~Amazon.ca tracking tag~~
+(`homecookhou03-20`) → ~~Canadian bank payment confirmed accepted~~.
 
-**Phase 1 — first real content — pending re-verification**
+**Phase 1 — first real content — done**
 Research agent found real, sourced candidates for a gooseneck-kettle roundup → Writer agent
-(with human editing) turned it into a post → reviewed and approved → published, then pulled
-back to `draft: true` when the amazon.com → amazon.ca pivot happened. All 3 ASINs were
-re-verified live on amazon.ca (same ASINs, confirmed via direct product-page checks, not
-assumed), links updated to amazon.ca with a placeholder tag. Once the real Amazon.ca tag is in,
-swap `YOURCATAG-20`, re-review, and flip `draft: false` again.
+(with human editing) turned it into a post → reviewed and approved → published against
+amazon.com, then converted to amazon.ca when the pivot happened (all 3 ASINs re-verified live
+on amazon.ca, not assumed) → real `homecookhou03-20` tag wired in → re-approved and live at
+[homecookhouse.com/reviews/best-electric-kettles-2026](https://homecookhouse.com/reviews/best-electric-kettles-2026/).
 
 **Phase 2 — establish cadence**
 Once you trust the pipeline, schedule the Research → Writer loop weekly (see the `schedule`

@@ -22,9 +22,9 @@ always as a draft.
   will reject the build otherwise.
 - ASIN must be the real 10-character code from the Research agent's output — regex-validated
   by the schema (`^[A-Z0-9]{10}$`).
-- `affiliateUrl` format: `https://www.amazon.ca/dp/<ASIN>?tag=<your-associates-ca-tag>` — the
-  site targets the **Canadian** marketplace (amazon.ca), not amazon.com. Use the placeholder
-  `YOURCATAG-20` until the real Amazon.ca Associates tag is issued; never invent a tag.
+- `affiliateUrl` format: `https://www.amazon.ca/dp/<ASIN>?tag=homecookhou03-20` — this is the
+  site's real, approved Amazon.ca Associates tag. The site targets the **Canadian** marketplace
+  (amazon.ca), not amazon.com. Never use a different tag or invent one.
 
 ## Process
 
