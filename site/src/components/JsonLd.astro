@@ -1,0 +1,39 @@
+---
+// Structured data for a product-roundup post. Deliberately omits
+// aggregateRating/review schema — we don't have real review data, and
+// fabricating it violates both Google's structured-data guidelines and
+// Amazon's content-accuracy rules.
+interface ProductEntry {
+  name: string;
+  imageAlt: string;
+}
+interface Props {
+  title: string;
+  description: string;
+  url: string;
+  datePublished: Date;
+  dateModified?: Date;
+  products: ProductEntry[];
+}
+const { title, description, url, datePublished, dateModified, products } = Astro.props as Props;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: title,
+  description,
+  url,
+  datePublished: datePublished.toISOString(),
+  ...(dateModified ? { dateModified: dateModified.toISOString() } : {}),
+  itemListElement: products.map((p, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    item: {
+      '@type': 'Product',
+      name: p.name,
+    },
+  })),
+};
+---
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />

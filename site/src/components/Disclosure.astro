@@ -1,0 +1,35 @@
+---
+// Required wording per the Amazon Associates Operating Agreement.
+// variant="banner": site-wide, put in the footer on every page.
+// variant="inline": short version placed near a cluster of affiliate links.
+interface Props {
+  variant?: 'banner' | 'inline';
+}
+const { variant = 'banner' } = Astro.props as Props;
+---
+
+{variant === 'banner' ? (
+  <p class="disclosure disclosure-banner">
+    As an Amazon Associate I earn from qualifying purchases.
+  </p>
+) : (
+  <p class="disclosure disclosure-inline">
+    This post contains affiliate links. As an Amazon Associate I earn from qualifying purchases.
+  </p>
+)}
+
+<style>
+  .disclosure {
+    font-size: 0.85rem;
+    opacity: 0.75;
+  }
+  .disclosure-banner {
+    text-align: center;
+    padding: 0.75rem 1rem;
+  }
+  .disclosure-inline {
+    border-left: 3px solid currentColor;
+    padding: 0.5rem 0.75rem;
+    margin-block: 1.5rem;
+  }
+</style>

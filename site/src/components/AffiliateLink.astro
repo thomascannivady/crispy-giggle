@@ -1,0 +1,32 @@
+---
+// Wraps every outbound Amazon link. Centralizing this means a single
+// place to fix link format if Amazon's linking rules change.
+interface Props {
+  href: string;
+  label: string;
+}
+const { href, label } = Astro.props as Props;
+---
+
+<a
+  href={href}
+  target="_blank"
+  rel="sponsored noopener nofollow"
+  class="affiliate-link"
+>
+  {label}
+  <span class="paid-tag">(paid link)</span>
+</a>
+
+<style>
+  .affiliate-link {
+    font-weight: 600;
+    text-decoration: underline;
+  }
+  .paid-tag {
+    font-weight: 400;
+    font-size: 0.8em;
+    opacity: 0.65;
+    margin-left: 0.35em;
+  }
+</style>

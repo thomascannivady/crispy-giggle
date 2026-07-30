@@ -1,0 +1,31 @@
+---
+import { getCollection, render } from 'astro:content';
+import ReviewLayout from '../../layouts/ReviewLayout.astro';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('reviews', ({ data }) => {
+    // Draft posts never make it into a production build, even if the
+    // review gate was forgotten — this is the actual enforcement point.
+    return import.meta.env.DEV || data.draft === false;
+  });
+  return entries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const url = new URL(`/reviews/${entry.id}/`, Astro.site).toString();
+---
+
+<ReviewLayout
+  title={entry.data.title}
+  description={entry.data.description}
+  publishDate={entry.data.publishDate}
+  updatedDate={entry.data.updatedDate}
+  products={entry.data.products}
+  url={url}
+>
+  <Content />
+</ReviewLayout>

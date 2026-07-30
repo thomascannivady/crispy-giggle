@@ -1,0 +1,32 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const entries = await getCollection('reviews', ({ data }) => {
+  return import.meta.env.DEV || data.draft === false;
+});
+entries.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+---
+
+<BaseLayout
+  title="Home Cook House"
+  description="Independent, hands-on comparisons of the best home and kitchen products."
+>
+  <h1 class="text-3xl font-bold mb-6">Latest guides</h1>
+
+  {entries.length === 0 && <p class="opacity-60">No published posts yet.</p>}
+
+  <ul class="space-y-6">
+    {entries.map((entry) => (
+      <li>
+        <a href={`/reviews/${entry.id}/`} class="text-xl font-semibold underline">
+          {entry.data.title}
+        </a>
+        {entry.data.draft && (
+          <span class="ml-2 text-xs uppercase tracking-wide opacity-50">(draft — dev only)</span>
+        )}
+        <p class="opacity-70">{entry.data.description}</p>
+      </li>
+    ))}
+  </ul>
+</BaseLayout>

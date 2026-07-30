@@ -1,0 +1,81 @@
+---
+import AffiliateLink from './AffiliateLink.astro';
+
+interface Props {
+  position: number;
+  name: string;
+  asin: string;
+  affiliateUrl: string;
+  imageAlt: string;
+  pros: string[];
+  cons: string[];
+  verdict?: string;
+}
+const { position, name, asin, affiliateUrl, imageAlt, pros, cons, verdict } = Astro.props as Props;
+---
+
+<article class="product-card border rounded-lg p-5 my-6">
+  <div class="flex items-start gap-4">
+    <span class="rank shrink-0 font-bold text-2xl opacity-40">#{position}</span>
+    <div class="flex-1">
+      <h3 class="text-xl font-semibold">{name}</h3>
+      <p class="text-xs opacity-50 mb-2">ASIN: {asin}</p>
+
+      <!--
+        No product image here yet: real Amazon product images require
+        either the SiteStripe toolbar (once your Associates account is
+        approved) or the Product Advertising API (which itself requires
+        3 qualifying sales first). Swap this placeholder for the real
+        image once you have one — do not hotlink or scrape Amazon's
+        image URLs directly, that violates the Operating Agreement.
+      -->
+      <div class="img-placeholder" role="img" aria-label={imageAlt}>
+        {imageAlt}
+      </div>
+
+      <div class="pros-cons">
+        <div>
+          <strong>Pros</strong>
+          <ul>
+            {pros.map((p) => <li>{p}</li>)}
+          </ul>
+        </div>
+        <div>
+          <strong>Cons</strong>
+          <ul>
+            {cons.map((c) => <li>{c}</li>)}
+          </ul>
+        </div>
+      </div>
+
+      {verdict && <p class="verdict">{verdict}</p>}
+
+      <AffiliateLink href={affiliateUrl} label={`Check price for ${name} on Amazon`} />
+    </div>
+  </div>
+</article>
+
+<style>
+  .img-placeholder {
+    border: 1px dashed currentColor;
+    opacity: 0.5;
+    font-size: 0.8rem;
+    padding: 1.5rem;
+    text-align: center;
+    margin-block: 0.75rem;
+    border-radius: 0.375rem;
+  }
+  .pros-cons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-block: 0.75rem;
+  }
+  .pros-cons ul {
+    padding-left: 1.1rem;
+  }
+  .verdict {
+    font-style: italic;
+    margin-block: 0.75rem;
+  }
+</style>

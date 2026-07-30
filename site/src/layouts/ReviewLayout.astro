@@ -1,0 +1,48 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import ProductCard from '../components/ProductCard.astro';
+import Disclosure from '../components/Disclosure.astro';
+import JsonLd from '../components/JsonLd.astro';
+
+interface ProductEntry {
+  name: string;
+  asin: string;
+  affiliateUrl: string;
+  imageAlt: string;
+  pros: string[];
+  cons: string[];
+  verdict?: string;
+}
+interface Props {
+  title: string;
+  description: string;
+  publishDate: Date;
+  updatedDate?: Date;
+  products: ProductEntry[];
+  url: string;
+}
+const { title, description, publishDate, updatedDate, products, url } = Astro.props as Props;
+---
+
+<BaseLayout title={title} description={description}>
+  <JsonLd
+    title={title}
+    description={description}
+    url={url}
+    datePublished={publishDate}
+    dateModified={updatedDate}
+    products={products}
+  />
+
+  <h1 class="text-3xl font-bold mb-2">{title}</h1>
+  <p class="text-sm opacity-60">
+    Published {publishDate.toLocaleDateString()}
+    {updatedDate && ` · Updated ${updatedDate.toLocaleDateString()}`}
+  </p>
+
+  <Disclosure variant="inline" />
+
+  <slot />
+
+  {products.map((p, i) => <ProductCard position={i + 1} {...p} />)}
+</BaseLayout>
