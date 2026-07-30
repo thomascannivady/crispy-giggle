@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import Disclosure from '../components/Disclosure.astro';
+import CategorySidebar from '../components/CategorySidebar.astro';
 
 interface Props {
   title: string;
@@ -18,17 +19,77 @@ const { title, description } = Astro.props as Props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body class="min-h-screen flex flex-col">
-    <header class="border-b px-4 py-4">
-      <a href="/" class="font-bold text-lg">Home Cook House</a>
+  <body>
+    <header class="site-header">
+      <a href="/" class="brand">Home Cook House</a>
     </header>
 
-    <main class="flex-1 px-4 py-8 max-w-3xl mx-auto w-full">
-      <slot />
-    </main>
+    <div class="layout">
+      <aside class="sidebar">
+        <CategorySidebar />
+      </aside>
+      <main class="content">
+        <slot />
+      </main>
+    </div>
 
-    <footer class="border-t mt-8">
+    <footer class="site-footer">
       <Disclosure variant="banner" />
     </footer>
+
+    <style>
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+        font-family: system-ui, -apple-system, sans-serif;
+        color: #1a1a1a;
+        background: #fff;
+      }
+      .site-header {
+        border-bottom: 1px solid #e5e5e5;
+        padding: 1rem;
+      }
+      .brand {
+        font-weight: 700;
+        font-size: 1.125rem;
+        text-decoration: none;
+        color: inherit;
+      }
+      .layout {
+        flex: 1;
+        display: flex;
+        gap: 2rem;
+        max-width: 1000px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+        align-items: flex-start;
+      }
+      .sidebar {
+        flex: 0 0 180px;
+      }
+      .content {
+        flex: 1;
+        min-width: 0;
+      }
+      .site-footer {
+        border-top: 1px solid #e5e5e5;
+        margin-top: 2rem;
+      }
+      @media (max-width: 700px) {
+        .layout {
+          flex-direction: column;
+        }
+        .sidebar {
+          flex: none;
+          width: 100%;
+        }
+      }
+    </style>
   </body>
 </html>

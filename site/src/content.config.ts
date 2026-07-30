@@ -20,6 +20,9 @@ const reviews = defineCollection({
     title: z.string(),
     description: z.string().max(160, 'Meta description should stay under ~160 chars'),
     niche: z.string(),
+    // Granular grouping for the category sidebar/pages — e.g. "Coffee", "Knives", "Outdoor".
+    // Distinct from `niche` (broad, e.g. "Home & Kitchen") which is more of a site-level label.
+    category: z.string(),
     publishDate: z.date(),
     updatedDate: z.date().optional(),
     // Review gate: a post only ships to prod once a human flips this to false.

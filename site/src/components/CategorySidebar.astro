@@ -1,0 +1,72 @@
+---
+import { getCollection } from 'astro:content';
+import { slugify } from '../utils/slug';
+
+const entries = await getCollection('reviews', ({ data }) => {
+  return import.meta.env.DEV || data.draft === false;
+});
+
+const counts = new Map<string, number>();
+for (const entry of entries) {
+  counts.set(entry.data.category, (counts.get(entry.data.category) ?? 0) + 1);
+}
+const categories = Array.from(counts.entries()).sort((a, b) => a[0].localeCompare(b[0]));
+
+const currentPath = Astro.url.pathname;
+---
+
+<nav class="category-nav" aria-label="Browse by category">
+  <h2>Categories</h2>
+  <ul>
+    <li>
+      <a href="/" aria-current={currentPath === '/' ? 'page' : undefined}>All guides</a>
+    </li>
+    {categories.map(([category, count]) => {
+      const href = `/categories/${slugify(category)}/`;
+      return (
+        <li>
+          <a href={href} aria-current={currentPath === href ? 'page' : undefined}>
+            {category} <span class="count">({count})</span>
+          </a>
+        </li>
+      );
+    })}
+  </ul>
+</nav>
+
+<style>
+  .category-nav {
+    font-size: 0.9rem;
+  }
+  .category-nav h2 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    opacity: 0.6;
+    margin-bottom: 0.75rem;
+  }
+  .category-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .category-nav a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    padding: 0.25rem 0;
+  }
+  .category-nav a:hover {
+    text-decoration: underline;
+  }
+  .category-nav a[aria-current='page'] {
+    font-weight: 700;
+  }
+  .count {
+    opacity: 0.5;
+    font-size: 0.85em;
+  }
+</style>

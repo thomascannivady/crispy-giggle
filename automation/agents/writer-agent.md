@@ -8,6 +8,12 @@ always as a draft.
 - File goes in `site/src/content/reviews/<slug>.mdx`, schema defined in
   `site/src/content.config.ts` — every field in that schema is required as written; don't
   invent extra frontmatter fields or drop required ones.
+- **`category` must be a real, existing category if one fits** (currently: Coffee, Knives,
+  Outdoor — check `site/src/content/reviews/*.mdx` for the current live list, it will grow).
+  Only introduce a new category value for a genuinely new content vertical, not a synonym for
+  an existing one — the category sidebar and `/categories/<slug>/` pages are generated
+  directly from these values, so inconsistent naming (e.g. "Coffee Gear" vs "Coffee") splits
+  what should be one category into two.
 - **`draft: true` always.** The Writer agent never sets `draft: false` — that's the human
   review-gate decision, not this agent's call.
 - No `price` field exists in the schema on purpose — never hardcode a price in body copy
