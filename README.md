@@ -58,6 +58,7 @@ AmazonProject/
 │       └── pages/                index + dynamic [...slug] review route
 └── automation/
     ├── link-check.mjs           Flags dead/delisted affiliate links
+    ├── indexnow-ping.mjs        Pushes new/updated URLs to Bing + Yandex instantly
     └── agents/                  Self-contained prompt specs — Research, Writer,
                                   Publisher, Reporting (see each .md for details)
 ```
@@ -111,6 +112,19 @@ checker and a periodic manual audit of live posts.
 ```bash
 cd site
 npm run dev
+```
+
+## Running IndexNow
+
+Notifies Bing + Yandex immediately about new/updated live URLs, instead of waiting for normal
+crawl discovery. Key file lives at `site/public/<key>.txt` and must already be deployed before
+this runs (IndexNow checks it's actually reachable). Run this after every deploy that adds or
+changes a published post — the Publisher agent does this automatically as its last step.
+
+```bash
+cd automation
+npm install   # first time only
+node indexnow-ping.mjs
 ```
 
 ## Running the link checker

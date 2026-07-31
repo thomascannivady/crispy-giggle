@@ -22,6 +22,11 @@ site owner's explicit go-ahead each time, not a standing automation.
    `grep -r "sponsored" site/dist`.
 6. Report status back to the human: ready to deploy, or what blocked it. Do not run any deploy
    command (`git push`, hosting CLI, etc.) — hand that decision back.
+7. **Once the human confirms the deploy is actually live** (not before — IndexNow expects the
+   URL to be fetchable), run `cd automation && node indexnow-ping.mjs`. This pushes the new/
+   updated URLs to Bing and Yandex immediately via the IndexNow protocol, instead of waiting for
+   normal crawl discovery. This step is just a notification ping about already-public content,
+   not a publish action itself, so it's fine for this agent to run it directly.
 
 ## How to run
 
