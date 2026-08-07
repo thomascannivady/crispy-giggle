@@ -1,0 +1,24 @@
+---
+// Site-level structured data for the homepage — establishes the brand
+// entity and site search action so Google can associate all review pages
+// with a single, recognized publisher.
+interface Props {
+  url: string;
+}
+const { url } = Astro.props as Props;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Home Cook House',
+  description: 'Independent, hands-on comparisons of the best home and kitchen products.',
+  url,
+  publisher: {
+    '@type': 'Organization',
+    name: 'Home Cook House',
+    url,
+  },
+};
+---
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
